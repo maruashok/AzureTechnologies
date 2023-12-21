@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography;
-using System.Text;
-using AzureTechnologies.Domain.Entities;
+﻿using AzureTechnologies.Domain.Entities;
 using AzureTechnologies.Domain.Interfaces.Repositiry;
 using AzureTechnologies.Domain.Interfaces.Service;
 using AzureTechnologies.Domain.Models;
@@ -9,10 +7,7 @@ namespace AzureTechnologies.Application.Services
 {
     public class UserService : IUserService
     {
-        private const int keySize = 64;
-        private const int iterations = 350000;
         private readonly IUserRepository repository;
-        private HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA512;
 
         public UserService(IUserRepository repository)
         {
@@ -36,13 +31,6 @@ namespace AzureTechnologies.Application.Services
             return null;
         }
 
-        private string HashPasword(string password, out byte[] salt)
-        {
-            salt = RandomNumberGenerator.GetBytes(keySize);
-            var hash = Rfc2898DeriveBytes.Pbkdf2(Encoding.UTF8.GetBytes(password), salt, iterations, hashAlgorithm, keySize);
-            return Convert.ToHexString(hash);
-        }
-
         public async Task<UserDTO?> GetByIdAsync(int? userId)
         {
             if (userId.HasValue && userId.GetValueOrDefault(0) > 0)
@@ -55,7 +43,6 @@ namespace AzureTechnologies.Application.Services
                     {
                         Email = user.Email,
                         FullName = user.FullName,
-                        Password = user.Password
                     };
                 }
             }
