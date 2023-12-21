@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2>Registration Form</h2>
+
+<form id="registrationForm">
+    <div class="mb-3 col-md-4">
+        <label for="exampleInputEmail1" class="form-label">Full Name:</label>
+        <input type="text" id="fullName" class="form-control" name="fullName" required>
+        <div class="invalid-feedback"></div>
+    </div>
+
+    <div class="mb-3 col-md-4">
+        <label for="exampleInputEmail1" class="form-label">Email address:</label>
+        <input type="text" class="form-control" id="email" name="email" required>
+        <div class="invalid-feedback"></div>
+    </div>
+
+    <div class="mb-3 col-md-4">
+        <label for="exampleInputPassword1" class="form-label">Password:</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+        <div class="invalid-feedback"></div>
+    </div>
+
+    <div class="mb-3 col-md-4">
+        <label for="exampleInputPassword1" class="form-label">Confirm password:</label>
+        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+        <div class="invalid-feedback"></div>
+    </div>
+
+    <div class="mb-3 col-md-12">
+        <div id="formError" class="invalid-feedback"></div>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button onclick="clearForm()" type="button" class="btn btn-danger">Clear</button>
+</form>
